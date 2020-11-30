@@ -39,11 +39,6 @@ GET /employees?birth_date=22.01.21
 GET /employees?start=11.11.11&end=12.12.12
 
 
-```
-docker run -d --name mysql -p 3306:3306 \
-  -e MYSQL_ROOT_PASSWORD=db-password \
-  -v /tmp:/var/lib/mysql mysql
-```
 
 
 

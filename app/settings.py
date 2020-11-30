@@ -10,7 +10,7 @@ class Config(object):
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_DIR, os.pardir))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL',
-                                             'mysql://root:localhost/employee_db')
+                                             'postgresql://postgres:db-password@localhost/postgres')
 
 class TestConfig(Config):
     """Test configuration."""

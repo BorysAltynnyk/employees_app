@@ -14,7 +14,7 @@ def create_app(config_object=Config):
 
     :param config_object: - config object.
     """
-    app = Flask(__name__.split('.')[0])
+    app = Flask(__name__)
     app.url_map.strict_slashes = False
     app.config.from_object(config_object)
     register_db(app)

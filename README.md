@@ -19,6 +19,21 @@ To run the web application use::
     flask run --with-threads
 
 
+Run database:
+```
+docker run -d --name mysql -p 3306:3306 \
+  -e MYSQL_ROOT_PASSWORD=db-password \
+  -v /tmp:/var/lib/mysql mysql
+```
+
+```
+docker run -d \
+	--name dev-postgres \
+	-e POSTGRES_PASSWORD=db-password \
+	-v /tmp/postgres-data:/var/lib/postgresql/data \
+     -p 5432:5432 postgres
+```
+
 Migrations
 ----------
 
