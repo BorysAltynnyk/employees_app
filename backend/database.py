@@ -4,10 +4,10 @@
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy, Model
 
+
 class CRUDMixin(Model):
     """
     Mixin that adds convenience methods for CRUD (create, read, update, delete) operations.
-    I found it in example project.
     """
 
     @classmethod
