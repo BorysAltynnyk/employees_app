@@ -10,8 +10,8 @@ blueprint = Blueprint('views', __name__)
 
 @blueprint.route('/', methods=(['GET']))
 def index():
-    res = Department.query.all()
-    return render_template('index.html', deps=res)
+    departments = Department.query.all()
+    return render_template('index.html', departments=departments)
 
 
 @blueprint.route('/departments', methods=(['POST']))

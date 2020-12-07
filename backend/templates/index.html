@@ -8,25 +8,24 @@
     <div class="content">
         <h1 style="text-align: center">Departments</h1>
 
-        {% if deps|length < 1 %}
+        {% if departments|length < 1 %}
             <h4>There are no departments. Create one below!</h4>
         {% else %}
             <div id="pricing" class="container-fluid">
-                <table class="table table-bordered table-striped">
+                <table class="department-table table table-bordered table-striped">
                     <tr>
                         <th>id</th>
                         <th>Name</th>
                         <th>Average Salary</th>
                         <th>Actions</th>
-
                     </tr>
-                    {% for dep in deps %}
-                        <tr>
-                            <td>{{ dep.id }}</td>
-                            <td><a href="departments/{{ dep.id }}">{{ dep.name }}</a></td>
-                            <td>{{ dep.salary }}</td>
+                    {% for d in departments %}
+                        <tr class="department-item" data-id="{{ d.id }}">
+                            <td>{{ d.id }}</td>
+                            <td><a href="departments/{{ d.id }}">{{ d.name }}</a></td>
+                            <td>{{ d.salary }}</td>
                             <td>
-                                <a class="btn btn-primary" href="delete/{{ dep.id }}">Delete</a>
+                                <span class="delete-btn btn btn-primary">Delete</span>
                             </td>
                         </tr>
                     {% endfor %}
@@ -38,4 +37,5 @@
             <input type="submit" value="Add department">
         </form>
     </div>
+    <script src="static/js/departments.js"></script>
 {% endblock %}

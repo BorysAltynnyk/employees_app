@@ -1,5 +1,5 @@
 # employees_app
-.. image:: image.png
+
 
 set the ``FLASK_APP`` and ``FLASK_DEBUG``
 environment variables ::
