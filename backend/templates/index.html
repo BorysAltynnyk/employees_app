@@ -18,14 +18,12 @@
             <th>Added</th>
             <th>Actions</th>
         </tr>
-        {% for task in tasks %}
+        {% for deb in debs %}
         <tr>
-            <td>{{ task.content }}</td>
-            <td>{{ task.date_created.date() }}</td>
+            <td>{{ deb.id }}</td>
+            <td>{{ deb.name }}</td>
             <td>
-                <a href="/delete/{{ task.id }}">Delete</a>
-                <br>
-                <a href="/update/{{ task.id }}">Update</a>
+                <a href="/departments/{{ deb.id }}">View</a>
             </td>
         </tr>
         {% endfor %}

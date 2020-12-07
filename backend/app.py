@@ -8,6 +8,7 @@ from .database import db, migrate
 
 from .settings import Config
 
+
 def create_app(config_object=Config):
     """An application factory, took from:
     http://flask.pocoo.org/docs/patterns/appfactories/.
@@ -28,9 +29,11 @@ def register_db(app):
     db.init_app(app)
     migrate.init_app(app, db)
 
+
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(controllers.blueprint)
+
 
 def register_commands(app):
     """Register Click commands."""
