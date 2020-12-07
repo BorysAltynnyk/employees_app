@@ -1,37 +1,45 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Task Master</title>
+<title>Employees manager</title>
 {% endblock %}
 
 {% block body %}
 <div class="content">
-    <h1>Task Master</h1>
+    <h1 style="text-align: center">Departments</h1>
 
-    {% if tasks|length < 1 %}
-    <h4>There are no tasks. Create one below!</h4>
+    {% if deps|length < 1 %}
+    <h4>There are no departments. Create one below!</h4>
     {% else%}
+    <div id="pricing" class="container-fluid" >
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Average Salary</th>
+                <th>Actions</th>
 
-    <table>
-        <tr>
-            <th>Task</th>
-            <th>Added</th>
-            <th>Actions</th>
-        </tr>
-        {% for deb in debs %}
-        <tr>
-            <td>{{ deb.id }}</td>
-            <td>{{ deb.name }}</td>
-            <td>
-                <a href="/departments/{{ deb.id }}">View</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+            </tr>
+            {% for dep in deps %}
+            <tr>
+                <td>{{ dep.id}}</td>
+                <td><a href="departments/{{ dep.id }}">{{ dep.name}}</a></td>
+                <td>{{ dep.avr_salary}}</td>
+                <td>
+                    <a class="btn btn-primary" href="delete/{{ dep.id }}">Delete</a>
+                    <a class="btn btn-primary" href="#">Update</a>
+
+
+
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
     {% endif %}
     <form action="/" method="POST">
-        <input type="text" name="content" id="content">
-        <input type="submit" value="Add Task">
+        <input type="text" name="dep_name" id="dep_name">
+        <input type="submit" value="Add department">
     </form>
 </div>
 {% endblock %}

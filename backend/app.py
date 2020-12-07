@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """The app module, containing the app factory function."""
 from flask import Flask
+from flask_restful import Resource, Api
+
 
 from . import controllers
+from . import views
 from . import commands
 from .database import db, migrate
 
@@ -33,8 +36,12 @@ def register_db(app):
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(controllers.blueprint)
+    app.register_blueprint(views.blueprint)
 
 
 def register_commands(app):
     """Register Click commands."""
     app.cli.add_command(commands.test)
+    app.cli.add_command(commands.seed)
+    app.cli.add_command(commands.seeddeps)
+
