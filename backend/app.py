@@ -4,8 +4,8 @@ from flask import Flask
 from flask_restful import Resource, Api
 
 
-from . import controllers
-from . import views
+from . import api
+from . import pages
 from . import commands
 from .database import db, migrate
 
@@ -35,8 +35,8 @@ def register_db(app):
 
 def register_blueprints(app):
     """Register Flask blueprints."""
-    app.register_blueprint(controllers.blueprint)
-    app.register_blueprint(views.blueprint)
+    app.register_blueprint(api.blueprint)
+    app.register_blueprint(pages.blueprint)
 
 
 def register_commands(app):

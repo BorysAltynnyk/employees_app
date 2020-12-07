@@ -14,7 +14,7 @@
     <h4>There are no employees. Create one below!</h4>
     {% else%}
     <div id="pricing" class="container-fluid" >
-        <table class="table table-bordered table-striped">
+        <table class="employee-table table table-bordered table-striped">
             <tr>
                 <th>id</th>
                 <th>Name</th>
@@ -25,15 +25,15 @@
 
             </tr>
             {% for empl in empls %}
-            <tr>
+            <tr class="employee-item" data-id="{{ empl.id }}">
                 <td>{{ empl.id}}</td>
                 <td>{{ empl.name}}</td>
                 <td>{{ empl.salary}}</td>
                 <td>{{ empl.birth_date.date()}}</td>
                 <td>{{ empl.department_id}}</td>
                 <td>
-                    <a href="delete/{{ empl.id }}">Delete</a>
-                    <a href="update/{{ empl.id }}">Update</a>
+                    <span class="delete-btn btn btn-primary">Delete</span>
+                    <span class="update-btn btn btn-primary">Update</span>
                 </td>
             </tr>
             {% endfor %}
@@ -45,4 +45,5 @@
         <input type="submit" value="Add employee">
     </form>
 </div>
+    <script src="static/js/index.js"></script>
 {% endblock %}

@@ -3,51 +3,49 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Department</title>
+    <title>Department</title>
 {% endblock %}
 
 {% block body %}
-<div class="content">
-    <h1 style="text-align: center">Department #{{ depid }} employees</h1>
+    <div class="content">
+        <h1 style="text-align: center">{{ department.name }} employees</h1>
 
-    {% if empls == 0%}
-    <h4>There are no employees. Create one below!</h4>
-    {% else%}
-    <div id="pricing" class="container-fluid" >
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>id</th>
-                <th>Name</th>
-                <th>Salary</th>
-                <th>Birth Date</th>
-{#                <th>Department</th>#}
-                <th>Actions</th>
+        {% if employees.count() == 0 %}
+            <h4>There are no employees. Create one below!</h4>
+        {% else %}
+            <div id="pricing" class="container-fluid">
+                <table class="employee-table table table-bordered table-striped">
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Salary</th>
+                        <th>Birth Date</th>
+                        <th>Actions</th>
 
-            </tr>
-            {% for empl in empls %}
-            <tr>
-                <td>{{ empl.id}}</td>
-                <td>{{ empl.name}}</td>
-                <td>{{ empl.salary}}</td>
-                <td>{{ empl.birth_date.date()}}</td>
-{#                <td>{{ empl.department_id}}</td>#}
-                <td>
-                    <a href="delete/{{ empl.id }}">Delete</a>
-                    <a href="update/{{ empl.id }}">Update</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+                    </tr>
+                    {% for e in employees %}
+                        <tr class="employee-item" data-id="{{ e.id }}">
+                            <td>{{ e.id }}</td>
+                            <td>{{ e.name }}</td>
+                            <td>{{ e.salary }}</td>
+                            <td>{{ e.birth_date.date() }}</td>
+                            <td>
+                                <span class="delete-btn btn btn-primary">Delete</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+
+
+        <form action="/departments/{{ department.id }}" method="POST">
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="salary" placeholder="salary">
+            <input type="text" name="birth_date" placeholder="birth date mm.dd.yyyy">
+            <input type="submit" value="Add employee">
+        </form>
+
     </div>
-    {% endif %}
-
-
-    <form action="/departments/{{ depid }}" method="POST">
-        <input type="text" name="name" placeholder="name">
-        <input type="text" name="salary" placeholder="salary">
-        <input type="text" name="birth_date" placeholder="birth date mm.dd.yyyy">
-        <input type="submit" value="Add employee">
-    </form>
-
-</div>
+    <script src="/static/js/employees.js"></script>
 {% endblock %}

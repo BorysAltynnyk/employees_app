@@ -1,45 +1,41 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Employees manager</title>
+    <title>Employees manager</title>
 {% endblock %}
 
 {% block body %}
-<div class="content">
-    <h1 style="text-align: center">Departments</h1>
+    <div class="content">
+        <h1 style="text-align: center">Departments</h1>
 
-    {% if deps|length < 1 %}
-    <h4>There are no departments. Create one below!</h4>
-    {% else%}
-    <div id="pricing" class="container-fluid" >
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>id</th>
-                <th>Name</th>
-                <th>Average Salary</th>
-                <th>Actions</th>
+        {% if deps|length < 1 %}
+            <h4>There are no departments. Create one below!</h4>
+        {% else %}
+            <div id="pricing" class="container-fluid">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Average Salary</th>
+                        <th>Actions</th>
 
-            </tr>
-            {% for dep in deps %}
-            <tr>
-                <td>{{ dep.id}}</td>
-                <td><a href="departments/{{ dep.id }}">{{ dep.name}}</a></td>
-                <td>{{ dep.avr_salary}}</td>
-                <td>
-                    <a class="btn btn-primary" href="delete/{{ dep.id }}">Delete</a>
-                    <a class="btn btn-primary" href="#">Update</a>
-
-
-
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+                    </tr>
+                    {% for dep in deps %}
+                        <tr>
+                            <td>{{ dep.id }}</td>
+                            <td><a href="departments/{{ dep.id }}">{{ dep.name }}</a></td>
+                            <td>{{ dep.salary }}</td>
+                            <td>
+                                <a class="btn btn-primary" href="delete/{{ dep.id }}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        <form action="/departments" method="POST">
+            <input type="text" name="dep_name" id="dep_name">
+            <input type="submit" value="Add department">
+        </form>
     </div>
-    {% endif %}
-    <form action="/" method="POST">
-        <input type="text" name="dep_name" id="dep_name">
-        <input type="submit" value="Add department">
-    </form>
-</div>
 {% endblock %}
