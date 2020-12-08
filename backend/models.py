@@ -13,7 +13,6 @@ class Department(Model):
        """Return object data in easily serializable format"""
        return {
            'id': self.id,
-           # This is an example how to deal with Many2Many relations
            'name': self.name,
            'avr_salary': self.avr_salary
        }

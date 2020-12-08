@@ -5,7 +5,6 @@
         })
             .then(res => res.json())
             .then(res => console.log(res))
-
     }
 
     const table = document.querySelector('.employee-table')
